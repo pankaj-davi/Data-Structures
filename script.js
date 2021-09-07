@@ -147,6 +147,54 @@ class SinglyLinkedList{
         return prev;
     }
 
+    // Print the Middle of a given linked list
+    // 1->2->3->4->5  output = 3
+    // 1->2->3->4->5->6  output = 4
+    // 5->NULL output = 5
+    // if we don't have link-list size or length
+    findMiddleMethod1(){
+        if(this.head === this.tail) return this.head;
+        let current = this.head;
+        let count = 0;
+
+        while(current !== null){
+            count++;
+            current = current.next;
+        }
+        let storeCount = Math.floor(count / 2);
+        let middle = this.head;
+        for(let i = 0; i < storeCount; i++){
+            middle = middle.next;
+        }
+        return middle;
+    }
+
+    // if we have link-list size or length
+    findMiddleMethod2(){
+        let middleNode = Math.floor(this.length /2)
+        let middle = this.head;
+        for(let i = 0; i < middleNode;i++){
+            middle = middle.next;
+        }
+        return middle;
+    }
+    // Write a function to delete a node in a singly-linked list. You will not be given access to the head of the list, instead you will be given access to the node to be deleted directly.
+    // It is guaranteed that the node to be deleted is not a tail node in the list.
+
+    // Input: head = [4,5,1,9], node = 5; || Output: [4,1,9]
+    // Input: head = [4,5,1,9], node = 1 || Output: [4,5,9]
+
+    deleNode() {
+        let node = this.get(1);
+        let delNode = node;
+        let nextNode = delNode.next;
+        let nextNodeNext = nextNode.next;
+        delNode.val = nextNode.val;
+        delNode.next = nextNodeNext;
+        nextNode.next = null; 
+    };
+
+    
 
 }
 
@@ -156,4 +204,3 @@ test.push(2222);
 test.push(3333);
 test.push(4444);
 test.push(5555);
-test.push(6666);
